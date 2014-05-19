@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShockDatacaster", "ShockDatacaster\ShockDatacaster.csproj", "{BE16DE14-956F-441A-9547-0B69B9CA6E0E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A6CDA469-7AC3-477E-8B91-D86CC2B6090D}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		License.txt = License.txt
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Setup", "Setup\Setup.wixproj", "{18C3469C-0F02-494E-A2AC-1244D294A1FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE16DE14-956F-441A-9547-0B69B9CA6E0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE16DE14-956F-441A-9547-0B69B9CA6E0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE16DE14-956F-441A-9547-0B69B9CA6E0E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BE16DE14-956F-441A-9547-0B69B9CA6E0E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BE16DE14-956F-441A-9547-0B69B9CA6E0E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BE16DE14-956F-441A-9547-0B69B9CA6E0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE16DE14-956F-441A-9547-0B69B9CA6E0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE16DE14-956F-441A-9547-0B69B9CA6E0E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BE16DE14-956F-441A-9547-0B69B9CA6E0E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BE16DE14-956F-441A-9547-0B69B9CA6E0E}.Release|x86.ActiveCfg = Release|Any CPU
+		{18C3469C-0F02-494E-A2AC-1244D294A1FB}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{18C3469C-0F02-494E-A2AC-1244D294A1FB}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{18C3469C-0F02-494E-A2AC-1244D294A1FB}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{18C3469C-0F02-494E-A2AC-1244D294A1FB}.Debug|x86.ActiveCfg = Debug|x86
+		{18C3469C-0F02-494E-A2AC-1244D294A1FB}.Debug|x86.Build.0 = Debug|x86
+		{18C3469C-0F02-494E-A2AC-1244D294A1FB}.Release|Any CPU.ActiveCfg = Release|x86
+		{18C3469C-0F02-494E-A2AC-1244D294A1FB}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{18C3469C-0F02-494E-A2AC-1244D294A1FB}.Release|Mixed Platforms.Build.0 = Release|x86
+		{18C3469C-0F02-494E-A2AC-1244D294A1FB}.Release|x86.ActiveCfg = Release|x86
+		{18C3469C-0F02-494E-A2AC-1244D294A1FB}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
