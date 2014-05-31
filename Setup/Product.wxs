@@ -1,22 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension" xmlns:fire="http://schemas.microsoft.com/wix/FirewallExtension">
+  <?if $(var.Platform) = x64 ?>
+    <?define Win64 = "yes" ?>
+    <?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
+  <?else ?>
+    <?define Win64 = "no" ?>
+    <?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
+  <?endif ?>
 	<Product Id="*" Name="ShockDatacaster" Language="2057" Version="2.0.0.0" Manufacturer="Shock Radio" UpgradeCode="159d5a5a-fbc0-4c76-b66a-b1c403f88e49">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 		<MajorUpgrade DowngradeErrorMessage="A newer version of ShockDatacaster is already installed." />
-		<MediaTemplate  EmbedCab="yes" CompressionLevel="high" />
+		<MediaTemplate EmbedCab="yes" CompressionLevel="high" />
 		<Feature Id="ProductFeature" Title="ShockDatacaster" Level="1">
-			<ComponentGroupRef Id="ProductComponents" />
+			<ComponentGroupRef Id="MainService" />
 		</Feature>
+    <UI />
+    <UIRef Id="WixUI_InstallDir" />
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+    <Condition Message="This application requires .NET Framework 4.5. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR NETFRAMEWORK45]]>
+    </Condition>
+    <PropertyRef Id="NETFRAMEWORK45"/>
 	</Product>
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLFOLDER" Name="Setup" />
+			<Directory Id="$(var.PlatformProgramFilesFolder)">
+				<Directory Id="INSTALLFOLDER" Name="ShockDatacaster" />
+        <Directory Id="WEBROOTFOLDER" Name="webroot">
+          <Directory Id="CSSFOLDER" Name="css" />
+          <Directory Id="FONTSFOLDER" Name="fonts" />
+          <Directory Id="IMGFOLDER" Name="img" />
+          <Directory Id="JSFOLDER" Name="js" />
+        </Directory>
 			</Directory>
 		</Directory>
 	</Fragment>
 	<Fragment>
-		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-		</ComponentGroup>
+		<ComponentGroup Id="MainService" Directory="INSTALLFOLDER">
+      <Component Id="WebServer.dll" Win64="$(var.Win64)">
+        <File Source="$(var.ShockDatacaster.TargetDir)WebServer.dll" />
+      </Component>
+      <Component Id="Apache.NMS.dll" Win64="$(var.Win64)">
+        <File Source="$(var.ShockDatacaster.TargetDir)Apache.NMS.dll" />
+      </Component>
+      <Component Id="Apache.NMS.Stomp.dll" Win64="$(var.Win64)">
+        <File Source="$(var.ShockDatacaster.TargetDir)Apache.NMS.Stomp.dll" />
+      </Component>
+      <Component Id="Newtonsoft.Json.dll" Win64="$(var.Win64)">
+        <File Source="$(var.ShockDatacaster.TargetDir)Newtonsoft.Json.dll" />
+      </Component>
+      <Component Id="ShockDatacaster.exe" Win64="$(var.Win64)">
+        <File KeyPath="yes" Source="$(var.ShockDatacaster.TargetDir)ShockDatacaster.exe">
+          <netfx:NativeImage Id="ShockDatacasterNativeImage" Platform="all" Priority="0" Dependencies="yes" />
+        </File>
+        <ServiceInstall Id="ServiceInstaller" Type="ownProcess" Vital="yes" Name="ShockDatacaster" DisplayName="ShockDatacaster" Description="Radio Metadata Datacaster" Start="auto" Account="LocalSystem" ErrorControl="ignore" Interactive="no" />
+        <ServiceControl Id="StartService" Start="install" Stop="both" Remove="uninstall" Name="ShockDatacaster" Wait="yes" />
+        <fire:FirewallException Id="UnblockPort" Name="ShockDatacaster (allow outside access)" Scope="any" Port="7000" Protocol="tcp" />
+      </Component>
+    </ComponentGroup>
 	</Fragment>
 </Wix>
