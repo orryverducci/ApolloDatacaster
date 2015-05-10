@@ -7,11 +7,14 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
+using WebServer;
 
 namespace ShockDatacaster
 {
     public partial class Service : ServiceBase
     {
+        private Server webServer;
+
         /// <summary>
         /// The system service for ShockDatacaster
         /// </summary>
@@ -63,6 +66,18 @@ namespace ShockDatacaster
         /// <param name="args">Applicaton arguments</param>
         protected override void OnStart(string[] args)
         {
+            // Start web server on port 7100
+            try
+            {
+                webServer = new Server(7100);
+                webServer.ServerName = "ShockDatacaster";
+            }
+            catch (InvalidOperationException e)
+            {
+                //
+                // Log exception
+                //
+            }
         }
 
         /// <summary>
@@ -70,6 +85,10 @@ namespace ShockDatacaster
         /// </summary>
         protected override void OnStop()
         {
+            if (webServer != null)
+            {
+                webServer.Dispose();
+            }
         }
     }
 }
