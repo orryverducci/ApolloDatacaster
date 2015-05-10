@@ -191,10 +191,16 @@ namespace WebServer
                 }
                 else
                 {
-                    response = new ErrorResponse(ErrorResponse.ErrorType.NOTFOUND);
+                    response = new ErrorResponse(404);
                 }
                 // Generate response
                 response.GetResponse();
+                // If response request server default errors, replace response with error
+                if (response.ReturnError)
+                {
+                    int errorCode = response.StatusCode;
+                    response = new ErrorResponse(errorCode);
+                }
                 // Send response
                 listenerContext.Response.ContentType = response.MimeType;
                 listenerContext.Response.StatusCode = response.StatusCode;

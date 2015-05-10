@@ -14,6 +14,13 @@ namespace WebServer
 
         public string MimeType { private set; get; }
 
+        public bool ReturnError {
+            get
+            {
+                return false;
+            }
+        }
+
         public void GetResponse()
         {
             Content = Encoding.UTF8.GetBytes("** TEST **");

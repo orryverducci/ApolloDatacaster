@@ -24,6 +24,11 @@ namespace WebServer
         string MimeType { get; }
 
         /// <summary>
+        /// If true, server responds with default error message. Message can be changed by setting StatusCode
+        /// </summary>
+        bool ReturnError { get; }
+
+        /// <summary>
         /// Generates the HTTP response
         /// </summary>
         void GetResponse();
