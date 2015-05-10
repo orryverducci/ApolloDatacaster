@@ -41,16 +41,13 @@ namespace ShockDatacaster
             }
             else // Else if running as a console application
             {
-                //
-                // Change headers output colour
-                //
                 // Write header
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("ShockDatacaster");
                 Console.WriteLine("---------------");
+                Console.ResetColor();
                 Console.WriteLine("Press any key to exit");
                 Console.WriteLine();
-                Console.ResetColor();
                 // Start the service
                 service.OnStart(args);
                 // Wait for key entry to exit
