@@ -7,7 +7,7 @@ Apollo Datacaster is developed by [Orry Verducci](http://www.orryverducci.co.uk/
 
 Development Environment
 -----------------------
-This project has been developed in Microsoft Visual Studio 2015, using .Net Framework 4.5.1.
+This project has been developed in Microsoft Visual Studio 2015, using .Net Framework 4.5.2.
 
 Included Projects
 -----------------
