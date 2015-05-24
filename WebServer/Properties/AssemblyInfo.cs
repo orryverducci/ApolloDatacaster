@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Web Server")]
 [assembly: AssemblyDescription("Provides a web server to applications")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Shock Radio")]
+[assembly: AssemblyCompany("Orry Verducci")]
 [assembly: AssemblyProduct("Web Server")]
-[assembly: AssemblyCopyright("Copyright © Shock Radio 2014")]
+[assembly: AssemblyCopyright("Copyright © Orry Verducci 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

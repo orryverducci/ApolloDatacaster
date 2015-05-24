@@ -36,16 +36,6 @@
     <Content Include="license.rtf" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ShockDatacaster\ShockDatacaster.csproj">
-      <Name>ShockDatacaster</Name>
-      <Project>{be16de14-956f-441a-9547-0b69b9ca6e0e}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WixExtension Include="WixUIExtension">
       <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
       <Name>WixUIExtension</Name>
@@ -58,6 +48,16 @@
       <HintPath>$(WixExtDir)\WixFirewallExtension.dll</HintPath>
       <Name>WixFirewallExtension</Name>
     </WixExtension>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ApolloDatacaster\ApolloDatacaster.csproj">
+      <Name>ApolloDatacaster</Name>
+      <Project>{be16de14-956f-441a-9547-0b69b9ca6e0e}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <!--

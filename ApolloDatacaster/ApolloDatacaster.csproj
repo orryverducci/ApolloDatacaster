@@ -7,8 +7,8 @@
     <ProjectGuid>{BE16DE14-956F-441A-9547-0B69B9CA6E0E}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ShockDatacaster</RootNamespace>
-    <AssemblyName>ShockDatacaster</AssemblyName>
+    <RootNamespace>ApolloDatacaster</RootNamespace>
+    <AssemblyName>ApolloDatacaster</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -35,7 +35,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ShockDatacaster.Service</StartupObject>
+    <StartupObject>ApolloDatacaster.Service</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>

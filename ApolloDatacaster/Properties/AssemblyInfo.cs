@@ -6,12 +6,12 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ShockDatacaster")]
+[assembly: AssemblyTitle("Apollo Datacaster")]
 [assembly: AssemblyDescription("Radio Metadata Datacaster")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Shock Radio")]
-[assembly: AssemblyProduct("ShockDatacaster")]
-[assembly: AssemblyCopyright("Copyright © Shock Radio 2014")]
+[assembly: AssemblyCompany("Orry Verducci")]
+[assembly: AssemblyProduct("Apollo Datacaster")]
+[assembly: AssemblyCopyright("Copyright © Orry Verducci 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,4 +1,4 @@
-﻿namespace ShockDatacaster
+﻿namespace ApolloDatacaster
 {
     partial class Service
     {

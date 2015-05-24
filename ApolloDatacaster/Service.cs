@@ -9,14 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using WebServer;
 
-namespace ShockDatacaster
+namespace ApolloDatacaster
 {
     public partial class Service : ServiceBase
     {
         private Server webServer;
 
         /// <summary>
-        /// The system service for ShockDatacaster
+        /// The system service for Apollo Datacaster
         /// </summary>
         public Service()
         {
@@ -43,8 +43,8 @@ namespace ShockDatacaster
             {
                 // Write header
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("ShockDatacaster");
-                Console.WriteLine("---------------");
+                Console.WriteLine("Apollo Datacaster");
+                Console.WriteLine("-----------------");
                 Console.ResetColor();
                 Console.WriteLine("Press any key to exit");
                 Console.WriteLine();
@@ -67,7 +67,7 @@ namespace ShockDatacaster
             try
             {
                 webServer = new Server(7100);
-                webServer.ServerName = "ShockDatacaster";
+                webServer.ServerName = "ApolloDatacaster";
             }
             catch (InvalidOperationException e)
             {

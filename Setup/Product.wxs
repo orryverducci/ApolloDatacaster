@@ -7,9 +7,9 @@
     <?define Win64 = "no" ?>
     <?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
   <?endif ?>
-	<Product Id="*" Name="ShockDatacaster" Language="2057" Version="2.0.0.0" Manufacturer="Shock Radio" UpgradeCode="159d5a5a-fbc0-4c76-b66a-b1c403f88e49">
+	<Product Id="*" Name="Apollo Datacaster" Language="2057" Version="2.0.0.0" Manufacturer="Orry Verducci" UpgradeCode="159d5a5a-fbc0-4c76-b66a-b1c403f88e49">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
-		<MajorUpgrade DowngradeErrorMessage="A newer version of ShockDatacaster is already installed." />
+		<MajorUpgrade DowngradeErrorMessage="A newer version of Apollo Datacaster is already installed." />
 		<MediaTemplate EmbedCab="yes" CompressionLevel="high" />
 		<Feature Id="ProductFeature" Title="ShockDatacaster" Level="1">
 			<ComponentGroupRef Id="MainService" />
@@ -26,7 +26,7 @@
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="$(var.PlatformProgramFilesFolder)">
-				<Directory Id="INSTALLFOLDER" Name="ShockDatacaster" />
+				<Directory Id="INSTALLFOLDER" Name="Apollo Datacaster" />
         <Directory Id="WEBROOTFOLDER" Name="webroot">
           <Directory Id="CSSFOLDER" Name="css" />
           <Directory Id="FONTSFOLDER" Name="fonts" />
@@ -39,24 +39,24 @@
 	<Fragment>
 		<ComponentGroup Id="MainService" Directory="INSTALLFOLDER">
       <Component Id="WebServer.dll" Win64="$(var.Win64)">
-        <File Source="$(var.ShockDatacaster.TargetDir)WebServer.dll" />
+        <File Source="$(var.ApolloDatacaster.TargetDir)WebServer.dll" />
       </Component>
       <Component Id="Apache.NMS.dll" Win64="$(var.Win64)">
-        <File Source="$(var.ShockDatacaster.TargetDir)Apache.NMS.dll" />
+        <File Source="$(var.ApolloDatacaster.TargetDir)Apache.NMS.dll" />
       </Component>
       <Component Id="Apache.NMS.Stomp.dll" Win64="$(var.Win64)">
-        <File Source="$(var.ShockDatacaster.TargetDir)Apache.NMS.Stomp.dll" />
+        <File Source="$(var.ApolloDatacaster.TargetDir)Apache.NMS.Stomp.dll" />
       </Component>
       <Component Id="Newtonsoft.Json.dll" Win64="$(var.Win64)">
-        <File Source="$(var.ShockDatacaster.TargetDir)Newtonsoft.Json.dll" />
+        <File Source="$(var.ApolloDatacaster.TargetDir)Newtonsoft.Json.dll" />
       </Component>
-      <Component Id="ShockDatacaster.exe" Win64="$(var.Win64)">
-        <File KeyPath="yes" Source="$(var.ShockDatacaster.TargetDir)ShockDatacaster.exe">
-          <netfx:NativeImage Id="ShockDatacasterNativeImage" Platform="all" Priority="0" Dependencies="yes" />
+      <Component Id="ApolloDatacaster.exe" Win64="$(var.Win64)">
+        <File KeyPath="yes" Source="$(var.ApolloDatacaster.TargetDir)ApolloDatacaster.exe">
+          <netfx:NativeImage Id="ApolloDatacasterNativeImage" Platform="all" Priority="0" Dependencies="yes" />
         </File>
-        <ServiceInstall Id="ServiceInstaller" Type="ownProcess" Vital="yes" Name="ShockDatacaster" DisplayName="ShockDatacaster" Description="Radio Metadata Datacaster" Start="auto" Account="LocalSystem" ErrorControl="ignore" Interactive="no" />
-        <ServiceControl Id="StartService" Start="install" Stop="both" Remove="uninstall" Name="ShockDatacaster" Wait="yes" />
-        <fire:FirewallException Id="UnblockPort" Name="ShockDatacaster (allow outside access)" Scope="any" Port="7000" Protocol="tcp" />
+        <ServiceInstall Id="ServiceInstaller" Type="ownProcess" Vital="yes" Name="Apollo Datacaster" DisplayName="Apollo Datacaster" Description="Radio Metadata Datacaster" Start="auto" Account="LocalSystem" ErrorControl="ignore" Interactive="no" />
+        <ServiceControl Id="StartService" Start="install" Stop="both" Remove="uninstall" Name="Apollo Datacaster" Wait="yes" />
+        <fire:FirewallException Id="UnblockPort" Name="Apollo Datacaster (allow outside access)" Scope="any" Port="7000" Protocol="tcp" />
       </Component>
     </ComponentGroup>
 	</Fragment>
