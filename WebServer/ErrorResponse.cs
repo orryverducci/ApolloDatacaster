@@ -1,33 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.IO;
 using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace WebServer
 {
     class ErrorResponse : IWebResponse
     {
-        /// <summary>
-        /// The errors that can be returned
-        /// </summary>
-        public enum ErrorType
-        {
-            BADREQUEST,
-            UNAUTHORISED,
-            FORBIDDEN,
-            NOTFOUND,
-            METHODNOTALLOWED,
-            REQUESTTIMEOUT,
-            CONFLICT,
-            SERVERERROR,
-            NOTIMPLEMENTED,
-            BADGATEWAY,
-            UNAVAILABLE,
-            GATEWAYTIMEOUT,
-            NETWORKAUTHREQUIRED
-        }
-
         public int StatusCode { private set; get; }
 
         public byte[] Content { private set; get; }
@@ -54,43 +32,71 @@ namespace WebServer
 
         public void GetResponse()
         {
+            // Return HTML Mime Type
             MimeType = "text/html";
+            // Set error message
+            string errorMessage;
+            string errorDescription;
             switch (StatusCode)
             {
                 case 400:
-                    Content = Encoding.UTF8.GetBytes("400 - Bad Request");
+                    errorMessage = "Error 400 - Bad Request";
+                    errorDescription = "The request to the server is not valid.";
                     break;
                 case 401:
-                    Content = Encoding.UTF8.GetBytes("401 - Unauthorised");
+                    errorMessage = "Error 401 - Unauthorised";
+                    errorDescription = "The page you are trying to access is available to only authenticated users.";
                     break;
                 case 403:
-                    Content = Encoding.UTF8.GetBytes("403 - Forbidden");
+                    errorMessage = "Error 403 - Forbidden";
+                    errorDescription = "You are not authorised to access this page.";
                     break;
                 case 404:
-                    Content = Encoding.UTF8.GetBytes("404 - Page Not Found");
+                    errorMessage = "Error 404 - Page Not Found";
+                    errorDescription = "The page you are looking for could not be found. Either the web address you have entered is incorrect, or the page you are trying to access no longer exists.";
                     break;
                 case 405:
-                    Content = Encoding.UTF8.GetBytes("400 - Method Not Allowed");
+                    errorMessage = "Error 405 - Method Not Available";
+                    errorDescription = "The requested method is not available for this page.";
                     break;
                 case 500:
-                    Content = Encoding.UTF8.GetBytes("500 - Internal Server Error");
+                    errorMessage = "Error 500 - Internal Server Error";
+                    errorDescription = "An error has occured on the server while trying to access this page. Please try again later.";
                     break;
                 case 501:
-                    Content = Encoding.UTF8.GetBytes("501 - Not Implemented");
+                    errorMessage = "Error 501 - Not Implemented";
+                    errorDescription = "The service you are trying to access has not yet been implemented.";
                     break;
                 case 502:
-                    Content = Encoding.UTF8.GetBytes("502 - Bad Gateway");
+                    errorMessage = "Error 502 - Bad Gateway";
+                    errorDescription = "This server received an invalid response when trying to retrieve the requested page.";
                     break;
                 case 503:
-                    Content = Encoding.UTF8.GetBytes("500 - Service Unavailable");
+                    errorMessage = "Error 503 - Service Unavailable";
+                    errorDescription = "This service is currently unavailable. Please try again later.";
                     break;
                 case 504:
-                    Content = Encoding.UTF8.GetBytes("504 - Gateway Timeout");
+                    errorMessage = "Error 504 - Gateway Timeout";
+                    errorDescription = "This server did not receive a response within a reasonable timeframe when trying to retrieve the requested page.";
                     break;
                 default:
-                    Content = Encoding.UTF8.GetBytes("An unknown error occurred");
+                    errorMessage = "Unknown Error";
+                    errorDescription = "An unknown error has occured.";
                     break;
             }
+            // Retrieve error page
+            string errorPageHTML;
+            Stream errorPageStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("WebServer.error.html");
+            StreamReader errorStreamReader = new StreamReader(errorPageStream);
+            errorPageHTML = errorStreamReader.ReadToEnd();
+            // Replace placeholders
+            errorPageHTML = errorPageHTML.Replace("[ERRORMESSAGE]", errorMessage);
+            errorPageHTML = errorPageHTML.Replace("[ERRORDESCRIPTION]", errorDescription);
+            int exceptionOpenLocation = errorPageHTML.IndexOf("[EXCEPTION]");
+            int exceptionCloseLocation = errorPageHTML.IndexOf("[/EXCEPTION]");
+            errorPageHTML = errorPageHTML.Remove(exceptionOpenLocation, exceptionCloseLocation - exceptionOpenLocation + 12);
+            // Return error page
+            Content = Encoding.UTF8.GetBytes(errorPageHTML);
         }
     }
 }

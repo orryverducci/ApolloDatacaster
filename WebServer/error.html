@@ -1,0 +1,105 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>[ERRORMESSAGE]</title>
+        <style type="text/css">
+            body, html {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                font-family: Arial, sans-serif;
+            }
+            
+            #container {
+                margin: auto;
+                height: 100%;
+                max-width: 970px;
+                display: -webkit-box;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                -webkit-box-direction: normal;
+                -moz-box-direction: normal;
+                -webkit-box-orient: vertical;
+                -moz-box-orient: vertical;
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                -webkit-flex-wrap: nowrap;
+                -ms-flex-wrap: nowrap;
+                flex-wrap: nowrap;
+                -webkit-box-pack: center;
+                -moz-box-pack: center;
+                -webkit-justify-content: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                -webkit-align-content: stretch;
+                -ms-flex-line-pack: stretch;
+                align-content: stretch;
+                -webkit-box-align: stretch;
+                -moz-box-align: stretch;
+                -webkit-align-items: stretch;
+                -ms-flex-align: stretch;
+                align-items: stretch;
+            }
+
+            #error {
+                padding: 20px;
+            }
+            
+            #icon {
+                color: #CCC;
+                font-size: 200px;
+                float: left;
+                line-height: 180px;
+            }
+
+            #text {
+                padding-left: 200px;
+            }
+            
+            h1 {
+                margin: 0;
+                border-bottom: 1px solid #CCC;
+                padding-bottom: 10px;
+            }
+            
+            p {
+                margin: 15px 0 0 0;
+            }
+            
+            h2 {
+                font-size: 16px;
+                margin: 20px 0 -10px 0;
+            }
+
+            @media (max-width: 767px) {
+                #icon {
+                    float: none;
+                    text-align: center;
+                }
+
+                #text {
+                    padding: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div id="error">
+                <div id="icon">&#9888;</div>
+                <div id="text">
+                    <h1>[ERRORMESSAGE]</h1>
+                    <p>[ERRORDESCRIPTION]</p>
+                    [EXCEPTION]
+                    <h2>Error information:</h2>
+                    <p>[EXCEPTIONTEXT]</p>
+                    [/EXCEPTION]
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
