@@ -44,7 +44,6 @@
     <Compile Include="IWebResponse.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="error.html" />
