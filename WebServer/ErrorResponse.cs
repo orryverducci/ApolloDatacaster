@@ -4,36 +4,22 @@ using System.Reflection;
 
 namespace WebServer
 {
-    class ErrorResponse : IWebResponse
+    class ErrorResponse : HTTPResponse
     {
-        public int StatusCode { private set; get; }
-
-        public byte[] Content { private set; get; }
-
-        public string MimeType { private set; get; }
-
-        public bool ReturnError
-        {
-            get
-            {
-                return false;
-            }
-
-        }
-
         /// <summary>
         /// Returns an error to the user
         /// </summary>
         /// <param name="errorNumber">The type of error to be returned to the user</param>
         public ErrorResponse(int errorNumber)
         {
+            // Set HTTP status code
             StatusCode = errorNumber;
+            // Set HTTP Mime Type to HTML
+            MimeType = "text/html";
         }
 
-        public void GetResponse()
+        public override byte[] GetResponse()
         {
-            // Return HTML Mime Type
-            MimeType = "text/html";
             // Set error message
             string errorMessage;
             string errorDescription;
@@ -96,7 +82,7 @@ namespace WebServer
             int exceptionCloseLocation = errorPageHTML.IndexOf("[/EXCEPTION]");
             errorPageHTML = errorPageHTML.Remove(exceptionOpenLocation, exceptionCloseLocation - exceptionOpenLocation + 12);
             // Return error page
-            Content = Encoding.UTF8.GetBytes(errorPageHTML);
+            return Encoding.UTF8.GetBytes(errorPageHTML);
         }
     }
 }

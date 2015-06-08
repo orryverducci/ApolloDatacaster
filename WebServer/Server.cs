@@ -36,7 +36,7 @@ namespace WebServer
             /// <summary>
             /// The web response
             /// </summary>
-            public IWebResponse Response { get; set; }
+            public HTTPResponse Response { get; set; }
             /// <summary>
             /// The path to the response
             /// </summary>
@@ -101,7 +101,7 @@ namespace WebServer
         /// Registers the home page response for the web server
         /// </summary>
         /// <param name="response">The response to serve</param>
-        public void RegisterResponse(IWebResponse response)
+        public void RegisterResponse(HTTPResponse response)
         {
             RegisterResponse("", response);
         }
@@ -111,7 +111,7 @@ namespace WebServer
         /// </summary>
         /// <param name="path">The path of the response</param>
         /// <param name="response">The response to serve</param>
-        public void RegisterResponse(string path, IWebResponse response)
+        public void RegisterResponse(string path, HTTPResponse response)
         {
             // 
             // Check if exists or for valid url characters
@@ -183,7 +183,7 @@ namespace WebServer
                     path = String.Empty;
                 }
                 // Select response
-                IWebResponse response;
+                HTTPResponse response;
                 WebResponse matchingResponse = registeredResponses.Find(item => item.Path == path);
                 if (matchingResponse != null)
                 {
@@ -194,24 +194,33 @@ namespace WebServer
                     response = new ErrorResponse(404);
                 }
                 // Generate response
-                response.GetResponse();
-                // If response request server default errors, replace response with error
-                if (response.ReturnError)
+                byte[] responseContent;
+                try {
+                    responseContent = response.GetResponse();
+                }
+                catch (Exception e)
                 {
-                    int errorCode = response.StatusCode;
-                    response = new ErrorResponse(errorCode);
+                    if (e is HTTPException)
+                    {
+                        response = new ErrorResponse(((HTTPException)e).ErrorCode);
+                        responseContent = response.GetResponse();
+                    }
+                    else
+                    {
+                        response = new ErrorResponse(500);
+                        responseContent = response.GetResponse();
+                    }
                 }
                 // Send response
                 listenerContext.Response.ContentType = response.MimeType;
                 listenerContext.Response.StatusCode = response.StatusCode;
-                listenerContext.Response.ContentLength64 = response.Content.Length;
+                listenerContext.Response.ContentLength64 = responseContent.Length;
                 if (ServerName != String.Empty)
                 {
                     listenerContext.Response.Headers.Add(HttpResponseHeader.Server, ServerName);
                 }
-                listenerContext.Response.OutputStream.Write(response.Content, 0, response.Content.Length);
+                listenerContext.Response.OutputStream.Write(responseContent, 0, responseContent.Length);
             }
-            catch (Exception) { } // Suppress any exceptions
             finally // Close the stream after processing
             {
                 listenerContext.Response.OutputStream.Close();
