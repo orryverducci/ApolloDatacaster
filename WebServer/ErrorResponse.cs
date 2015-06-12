@@ -44,6 +44,8 @@ namespace WebServer
                 case 405:
                     errorMessage = "Error 405 - Method Not Available";
                     errorDescription = "The requested method is not available for this page.";
+                    errorMessage = "Error 405 - Method Not Allowed";
+                    errorDescription = "The requested method is not allowed for this page.";
                     break;
                 case 500:
                     errorMessage = "Error 500 - Internal Server Error";
