@@ -25,45 +25,43 @@ namespace WebServer
             string errorDescription;
             switch (StatusCode)
             {
-                case 400:
+			    case HTTPStatus.BADREQUEST:
                     errorMessage = "Error 400 - Bad Request";
                     errorDescription = "The request to the server is not valid.";
                     break;
-                case 401:
+			    case HTTPStatus.UNAUTHORISED:
                     errorMessage = "Error 401 - Unauthorised";
                     errorDescription = "The page you are trying to access is available to only authenticated users.";
                     break;
-                case 403:
+			    case HTTPStatus.FORBIDDEN:
                     errorMessage = "Error 403 - Forbidden";
                     errorDescription = "You are not authorised to access this page.";
                     break;
-                case 404:
+			    case HTTPStatus.NOTFOUND:
                     errorMessage = "Error 404 - Page Not Found";
                     errorDescription = "The page you are looking for could not be found. Either the web address you have entered is incorrect, or the page you are trying to access no longer exists.";
                     break;
-                case 405:
-                    errorMessage = "Error 405 - Method Not Available";
-                    errorDescription = "The requested method is not available for this page.";
+			    case HTTPStatus.METHODNOTALLOWED:
                     errorMessage = "Error 405 - Method Not Allowed";
                     errorDescription = "The requested method is not allowed for this page.";
                     break;
-                case 500:
+			    case HTTPStatus.SERVERERROR:
                     errorMessage = "Error 500 - Internal Server Error";
                     errorDescription = "An error has occured on the server while trying to access this page. Please try again later.";
                     break;
-                case 501:
+			    case HTTPStatus.NOTIMPLEMENTED:
                     errorMessage = "Error 501 - Not Implemented";
                     errorDescription = "The service you are trying to access has not yet been implemented.";
                     break;
-                case 502:
+			    case HTTPStatus.BADGATEWAY:
                     errorMessage = "Error 502 - Bad Gateway";
                     errorDescription = "This server received an invalid response when trying to retrieve the requested page.";
                     break;
-                case 503:
+			    case HTTPStatus.UNAVAILABLE:
                     errorMessage = "Error 503 - Service Unavailable";
                     errorDescription = "This service is currently unavailable. Please try again later.";
                     break;
-                case 504:
+			    case HTTPStatus.GATEWAYTIMEOUT:
                     errorMessage = "Error 504 - Gateway Timeout";
                     errorDescription = "This server did not receive a response within a reasonable timeframe when trying to retrieve the requested page.";
                     break;

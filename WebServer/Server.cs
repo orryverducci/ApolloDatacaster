@@ -191,7 +191,7 @@ namespace WebServer
                 }
                 else
                 {
-                    response = new ErrorResponse(404);
+					response = new ErrorResponse(HTTPResponse.HTTPStatus.NOTFOUND);
                 }
                 // Generate response
                 byte[] responseContent;
@@ -207,7 +207,7 @@ namespace WebServer
                     }
                     else
                     {
-                        response = new ErrorResponse(500);
+						response = new ErrorResponse(HTTPResponse.HTTPStatus.SERVERERROR);
                         responseContent = response.GetResponse();
                     }
                 }
