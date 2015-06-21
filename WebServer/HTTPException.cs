@@ -6,7 +6,7 @@ namespace WebServer
     [Serializable]
     public class HTTPException : Exception
     {
-        public int ErrorCode { get; set; }
+        public HTTPResponse.HTTPStatus ErrorCode { get; set; }
 
         public HTTPException() { }
 
@@ -18,7 +18,7 @@ namespace WebServer
         {
             if (info != null)
             {
-                ErrorCode = info.GetInt32("ErrorCode");
+                ErrorCode = (HTTPResponse.HTTPStatus)info.GetInt32("ErrorCode");
             }
         }
 
@@ -27,7 +27,7 @@ namespace WebServer
             base.GetObjectData(info, context);
             if (info != null)
             {
-                info.AddValue("ErrorCode", ErrorCode);
+                info.AddValue("ErrorCode", (int)ErrorCode);
             }
         }
     }

@@ -10,7 +10,7 @@ namespace WebServer
         /// Returns an error to the user
         /// </summary>
         /// <param name="errorNumber">The type of error to be returned to the user</param>
-        public ErrorResponse(int errorNumber)
+        public ErrorResponse(HTTPStatus errorNumber)
         {
             // Set HTTP status code
             StatusCode = errorNumber;

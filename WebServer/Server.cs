@@ -213,7 +213,7 @@ namespace WebServer
                 }
                 // Send response
                 listenerContext.Response.ContentType = response.MimeType;
-                listenerContext.Response.StatusCode = response.StatusCode;
+                listenerContext.Response.StatusCode = (int)response.StatusCode;
                 listenerContext.Response.ContentLength64 = responseContent.Length;
                 if (ServerName != String.Empty)
                 {

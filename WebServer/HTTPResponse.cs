@@ -98,7 +98,7 @@ namespace WebServer
         /// <summary>
         /// The status code of the HTTP response
         /// </summary>
-		public int StatusCode { protected set; get; } = HTTPStatus.OK;
+		public HTTPStatus StatusCode { protected set; get; } = HTTPStatus.OK;
 
         /// <summary>
         /// The mime type of the HTTP response
