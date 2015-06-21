@@ -200,9 +200,9 @@ namespace WebServer
                 }
                 catch (Exception e)
                 {
-                    if (e is HTTPException)
+                    if (e is HTTPErrorException)
                     {
-                        response = new ErrorResponse(((HTTPException)e).ErrorCode);
+                        response = new ErrorResponse(((HTTPErrorException)e).ErrorCode);
                         responseContent = response.GetResponse();
                     }
                     else
