@@ -45,11 +45,11 @@ namespace WebServer
                     errorMessage = "Error 405 - Method Not Allowed";
                     errorDescription = "The requested method is not allowed for this page.";
                     break;
-			    case HTTPStatus.SERVERERROR:
+                case HTTPStatus.SERVERERROR:
                     errorMessage = "Error 500 - Internal Server Error";
                     errorDescription = "An error has occured on the server while trying to access this page. Please try again later.";
                     break;
-			    case HTTPStatus.NOTIMPLEMENTED:
+                case HTTPStatus.NOTIMPLEMENTED:
                     errorMessage = "Error 501 - Not Implemented";
                     errorDescription = "The service you are trying to access has not yet been implemented.";
                     break;
@@ -66,8 +66,9 @@ namespace WebServer
                     errorDescription = "This server did not receive a response within a reasonable timeframe when trying to retrieve the requested page.";
                     break;
                 default:
-                    errorMessage = "Unknown Error";
-                    errorDescription = "An unknown error has occured.";
+                    errorMessage = "Error 500 - Internal Server Error";
+                    errorDescription = "An error has occured on the server while trying to access this page. Please try again later.</p><p>Internal Error: " + StatusCode.ToString();
+                    StatusCode = HTTPStatus.SERVERERROR;
                     break;
             }
             // Retrieve error page
