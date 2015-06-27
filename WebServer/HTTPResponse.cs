@@ -98,7 +98,29 @@ namespace WebServer
         /// <summary>
         /// The status code of the HTTP response
         /// </summary>
-		public HTTPStatus StatusCode { protected set; get; } = HTTPStatus.OK;
+        private HTTPStatus statusCode;
+
+        /// <summary>
+        /// The status code of the HTTP response
+        /// </summary>
+		public HTTPStatus StatusCode
+        {
+            protected set
+            {
+                if ((int)statusCode >= 100 && (int)statusCode < 1000)
+                {
+                    statusCode = value;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("The HTTP response status code must be a 3 digit number");
+                }
+            }
+            get
+            {
+                return statusCode;
+            }
+        }
 
         /// <summary>
         /// The mime type of the HTTP response
