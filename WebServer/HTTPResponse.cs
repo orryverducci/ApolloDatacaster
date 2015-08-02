@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace WebServer
 {
@@ -107,7 +108,7 @@ namespace WebServer
         {
             protected set
             {
-                if ((int)statusCode >= 100 && (int)statusCode < 1000)
+                if ((int)value >= 100 && (int)value < 1000)
                 {
                     statusCode = value;
                 }
