@@ -205,11 +205,13 @@ namespace WebServer
                     {
                         response = new ErrorResponse(((HTTPErrorException)e).ErrorCode);
                         responseContent = response.GetResponse();
+                        response = new ErrorResponse(((HTTPErrorException)e).ErrorCode, e);
                     }
                     else
                     {
 						response = new ErrorResponse(HTTPResponse.HTTPStatus.SERVERERROR);
                         responseContent = response.GetResponse();
+						response = new ErrorResponse(HTTPResponse.HTTPStatus.SERVERERROR, e);
                     }
                     response.ListenerRequest = listenerContext.Request;
                     responseContent = response.GetResponse();

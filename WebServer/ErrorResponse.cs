@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Net;
 using System.Text;
 using System.Reflection;
 
@@ -6,16 +8,20 @@ namespace WebServer
 {
     class ErrorResponse : HTTPResponse
     {
+        private Exception exception;
+
         /// <summary>
         /// Returns an error to the user
         /// </summary>
         /// <param name="errorNumber">The type of error to be returned to the user</param>
-        public ErrorResponse(HTTPStatus errorNumber)
+        public ErrorResponse(HTTPStatus errorNumber, Exception innerException)
         {
             // Set HTTP status code
             StatusCode = errorNumber;
             // Set HTTP Mime Type to HTML
             MimeType = "text/html";
+            // Set inner exception
+            exception = innerException;
         }
 
         public override byte[] GetResponse()
@@ -76,12 +82,29 @@ namespace WebServer
             Stream errorPageStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("WebServer.error.html");
             StreamReader errorStreamReader = new StreamReader(errorPageStream);
             errorPageHTML = errorStreamReader.ReadToEnd();
-            // Replace placeholders
+            // Replace error message placeholders
             errorPageHTML = errorPageHTML.Replace("[ERRORMESSAGE]", errorMessage);
             errorPageHTML = errorPageHTML.Replace("[ERRORDESCRIPTION]", errorDescription);
+            // Replace exception placeholder
             int exceptionOpenLocation = errorPageHTML.IndexOf("[EXCEPTION]");
             int exceptionCloseLocation = errorPageHTML.IndexOf("[/EXCEPTION]");
-            errorPageHTML = errorPageHTML.Remove(exceptionOpenLocation, exceptionCloseLocation - exceptionOpenLocation + 12);
+            if (IPAddress.IsLoopback(RequesterIP))
+            {
+                errorPageHTML = errorPageHTML.Remove(exceptionOpenLocation, 11);
+                errorPageHTML = errorPageHTML.Remove(exceptionCloseLocation - 11, 12);
+                if (exception.InnerException != null)
+                {
+                    errorPageHTML = errorPageHTML.Replace("[EXCEPTIONTEXT]", exception.Message + "<br />Inner Exception: " + exception.InnerException.Message);
+                }
+                else
+                {
+                    errorPageHTML = errorPageHTML.Replace("[EXCEPTIONTEXT]", exception.Message);
+                }
+            }
+            else
+            {
+                errorPageHTML = errorPageHTML.Remove(exceptionOpenLocation, exceptionCloseLocation - exceptionOpenLocation + 12);
+            }
             // Return error page
             return Encoding.UTF8.GetBytes(errorPageHTML);
         }
