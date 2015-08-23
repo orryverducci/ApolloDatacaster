@@ -135,6 +135,17 @@ namespace WebServer
         public HttpListenerRequest ListenerRequest { set; get; }
 
         /// <summary>
+        /// The IP address of the requester
+        /// </summary>
+        public IPAddress RequesterIP
+        {
+            get
+            {
+                return ListenerRequest.RemoteEndPoint.Address;
+            }
+        }
+
+        /// <summary>
         /// Returns the HTTP response
         /// </summary>
         public abstract byte[] GetResponse();
