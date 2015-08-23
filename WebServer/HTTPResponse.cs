@@ -99,7 +99,7 @@ namespace WebServer
         /// <summary>
         /// The status code of the HTTP response
         /// </summary>
-        private HTTPStatus statusCode;
+        private HTTPStatus statusCode = HTTPStatus.OK;
 
         /// <summary>
         /// The status code of the HTTP response
