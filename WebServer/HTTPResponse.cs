@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Net;
 
 namespace WebServer
 {
@@ -127,6 +128,11 @@ namespace WebServer
         /// The mime type of the HTTP response
         /// </summary>
         public string MimeType { protected set; get; } = "application/octet-stream";
+
+        /// <summary>
+        /// The HTTP listener request information class
+        /// </summary>
+        public HttpListenerRequest ListenerRequest { set; get; }
 
         /// <summary>
         /// Returns the HTTP response

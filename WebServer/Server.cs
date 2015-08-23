@@ -195,6 +195,7 @@ namespace WebServer
                 }
                 // Generate response
                 byte[] responseContent;
+                response.ListenerRequest = listenerContext.Request;
                 try {
                     responseContent = response.GetResponse();
                 }
@@ -210,6 +211,8 @@ namespace WebServer
 						response = new ErrorResponse(HTTPResponse.HTTPStatus.SERVERERROR);
                         responseContent = response.GetResponse();
                     }
+                    response.ListenerRequest = listenerContext.Request;
+                    responseContent = response.GetResponse();
                 }
                 // Send response
                 listenerContext.Response.ContentType = response.MimeType;
