@@ -203,14 +203,10 @@ namespace WebServer
                 {
                     if (e is HTTPErrorException)
                     {
-                        response = new ErrorResponse(((HTTPErrorException)e).ErrorCode);
-                        responseContent = response.GetResponse();
                         response = new ErrorResponse(((HTTPErrorException)e).ErrorCode, e);
                     }
                     else
                     {
-						response = new ErrorResponse(HTTPResponse.HTTPStatus.SERVERERROR);
-                        responseContent = response.GetResponse();
 						response = new ErrorResponse(HTTPResponse.HTTPStatus.SERVERERROR, e);
                     }
                     response.ListenerRequest = listenerContext.Request;
