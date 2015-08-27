@@ -43,6 +43,7 @@
     <Compile Include="ErrorResponse.cs" />
     <Compile Include="HTTPErrorException.cs" />
     <Compile Include="HTTPResponse.cs" />
+    <Compile Include="RequestInfo.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

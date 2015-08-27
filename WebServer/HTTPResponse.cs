@@ -130,18 +130,18 @@ namespace WebServer
         public string MimeType { protected set; get; } = "application/octet-stream";
 
         /// <summary>
-        /// The HTTP listener request information class
+        /// Information about the received request
         /// </summary>
-        public HttpListenerRequest ListenerRequest { set; get; }
+        public RequestInfo RequestInformation { set; get; }
 
         /// <summary>
-        /// The IP address of the requester
+        /// The IP address the request originated from
         /// </summary>
-        public IPAddress RequesterIP
+        public IPAddress SourceIP
         {
             get
             {
-                return ListenerRequest.RemoteEndPoint.Address;
+                return RequestInformation.SourceIP;
             }
         }
 

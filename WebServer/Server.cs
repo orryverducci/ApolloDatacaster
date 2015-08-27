@@ -193,9 +193,12 @@ namespace WebServer
                 {
 					response = new ErrorResponse(HTTPResponse.HTTPStatus.NOTFOUND);
                 }
+                // Prepare request information
+                RequestInfo requestInfo = new RequestInfo();
+                requestInfo.SourceIP = listenerContext.Request.RemoteEndPoint.Address;
                 // Generate response
                 byte[] responseContent;
-                response.ListenerRequest = listenerContext.Request;
+                response.RequestInformation = requestInfo;
                 try {
                     responseContent = response.GetResponse();
                 }
@@ -209,7 +212,7 @@ namespace WebServer
                     {
 						response = new ErrorResponse(HTTPResponse.HTTPStatus.SERVERERROR, e);
                     }
-                    response.ListenerRequest = listenerContext.Request;
+                    response.RequestInformation = requestInfo;
                     responseContent = response.GetResponse();
                 }
                 // Send response
