@@ -196,6 +196,8 @@ namespace WebServer
                 // Prepare request information
                 RequestInfo requestInfo = new RequestInfo();
                 requestInfo.SourceIP = listenerContext.Request.RemoteEndPoint.Address;
+                requestInfo.Domain = listenerContext.Request.Url.Host;
+                requestInfo.Path = listenerContext.Request.Url.AbsolutePath.Substring(1).Split('/');
                 // Generate response
                 byte[] responseContent;
                 response.RequestInformation = requestInfo;
