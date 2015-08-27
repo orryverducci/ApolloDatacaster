@@ -135,17 +135,6 @@ namespace WebServer
         public RequestInfo RequestInformation { set; get; }
 
         /// <summary>
-        /// The IP address the request originated from
-        /// </summary>
-        public IPAddress SourceIP
-        {
-            get
-            {
-                return RequestInformation.SourceIP;
-            }
-        }
-
-        /// <summary>
         /// Returns the HTTP response
         /// </summary>
         public abstract byte[] GetResponse();

@@ -88,7 +88,7 @@ namespace WebServer
             // Replace exception placeholder
             int exceptionOpenLocation = errorPageHTML.IndexOf("[EXCEPTION]");
             int exceptionCloseLocation = errorPageHTML.IndexOf("[/EXCEPTION]");
-            if (IPAddress.IsLoopback(SourceIP))
+            if (IPAddress.IsLoopback(RequestInformation.SourceIP))
             {
                 errorPageHTML = errorPageHTML.Remove(exceptionOpenLocation, 11);
                 errorPageHTML = errorPageHTML.Remove(exceptionCloseLocation - 11, 12);
