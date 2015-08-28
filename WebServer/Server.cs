@@ -198,6 +198,12 @@ namespace WebServer
                 requestInfo.SourceIP = listenerContext.Request.RemoteEndPoint.Address;
                 requestInfo.Domain = listenerContext.Request.Url.Host;
                 requestInfo.Path = listenerContext.Request.Url.AbsolutePath.Substring(1).Split('/');
+                requestInfo.GetQueries = new Dictionary<string, string>();
+                for (int i = 0; i < listenerContext.Request.QueryString.Count; i++)
+                {
+                    string key = listenerContext.Request.QueryString.GetKey(i);
+                    requestInfo.GetQueries.Add(key, string.Join(string.Empty, listenerContext.Request.QueryString.GetValues(key)));
+                }
                 // Generate response
                 byte[] responseContent;
                 response.RequestInformation = requestInfo;

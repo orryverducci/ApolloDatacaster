@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 
 namespace WebServer
 {
@@ -21,5 +22,10 @@ namespace WebServer
         /// Array of the seperate segments of the requested URL path
         /// </summary>
         public string[] Path { get; set; }
+
+        /// <summary>
+        /// Array of variables passed as GET queries in the URL
+        /// </summary>
+        public Dictionary<string, string> GetQueries { get; set; }
     }
 }
