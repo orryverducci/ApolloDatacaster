@@ -24,7 +24,7 @@ namespace WebServer
         public string[] Path { get; set; }
 
         /// <summary>
-        /// Array of variables passed as GET queries in the URL
+        /// Dictionary of queries requested as GET queries in the URL
         /// </summary>
         public Dictionary<string, string> GetQueries { get; set; }
     }
