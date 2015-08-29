@@ -24,6 +24,11 @@ namespace WebServer
         public string[] Path { get; set; }
 
         /// <summary>
+        /// The HTTP Method requested
+        /// </summary>
+        public string Method { get; set; }
+
+        /// <summary>
         /// The content type of the sent data, expressed as an Internet media type
         /// </summary>
         public string ContentType { get; set; }
