@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -200,6 +201,7 @@ namespace WebServer
                 requestInfo.Path = listenerContext.Request.Url.AbsolutePath.Substring(1).Split('/');
                 requestInfo.Method = listenerContext.Request.HttpMethod;
                 requestInfo.ContentType = listenerContext.Request.ContentType;
+                requestInfo.SentData = listenerContext.Request.InputStream;
                 requestInfo.GetQueries = new Dictionary<string, string>();
                 for (int i = 0; i < listenerContext.Request.QueryString.Count; i++)
                 {
@@ -209,7 +211,7 @@ namespace WebServer
                 requestInfo.PostData = new Dictionary<string, string>();
                 if (requestInfo.Method == "POST" && requestInfo.ContentType == "application/x-www-form-urlencoded")
                 {
-                    StreamReader postStream = new StreamReader(listenerContext.Request.InputStream);
+                    StreamReader postStream = new StreamReader(requestInfo.SentData);
                     string postString = postStream.ReadToEnd();
                     string[] postArray = postString.Split('&');
                     foreach (string postData in postArray)

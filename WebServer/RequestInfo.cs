@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Net;
 
 namespace WebServer
@@ -33,6 +34,11 @@ namespace WebServer
         /// </summary>
         public string ContentType { get; set; }
 
+        /// <summary>
+        /// The data sent with the request
+        /// </summary>
+        public Stream SentData { get; set; }
+        
         /// <summary>
         /// Dictionary of queries requested as GET queries in the URL
         /// </summary>
