@@ -206,7 +206,7 @@ namespace WebServer
                 for (int i = 0; i < listenerContext.Request.QueryString.Count; i++)
                 {
                     string key = listenerContext.Request.QueryString.GetKey(i);
-                    requestInfo.GetQueries.Add(key, WebUtility.UrlDecode(string.Join(string.Empty, listenerContext.Request.QueryString.GetValues(key))));
+                    requestInfo.GetQueries.Add(key, WebUtility.UrlDecode(listenerContext.Request.QueryString[key]));
                 }
                 requestInfo.PostData = new Dictionary<string, string>();
                 if (requestInfo.Method == "POST" && requestInfo.ContentType == "application/x-www-form-urlencoded")
