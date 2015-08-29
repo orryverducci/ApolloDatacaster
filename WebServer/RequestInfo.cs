@@ -27,5 +27,10 @@ namespace WebServer
         /// Dictionary of queries requested as GET queries in the URL
         /// </summary>
         public Dictionary<string, string> GetQueries { get; set; }
+
+        /// <summary>
+        /// Dictionary of data as sent as HTTP POST data
+        /// </summary>
+        public Dictionary<string, string> PostData { get; set; }
     }
 }

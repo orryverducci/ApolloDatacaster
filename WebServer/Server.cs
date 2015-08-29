@@ -204,6 +204,17 @@ namespace WebServer
                     string key = listenerContext.Request.QueryString.GetKey(i);
                     requestInfo.GetQueries.Add(key, string.Join(string.Empty, listenerContext.Request.QueryString.GetValues(key)));
                 }
+                requestInfo.PostData = new Dictionary<string, string>();
+                if (listenerContext.Request.HttpMethod == "POST" && listenerContext.Request.ContentType == "application/x-www-form-urlencoded")
+                {
+                    StreamReader postStream = new StreamReader(listenerContext.Request.InputStream);
+                    string postString = postStream.ReadToEnd();
+                    string[] postArray = postString.Split('&');
+                    foreach (string postData in postArray)
+                    {
+                        requestInfo.PostData.Add(postData.Substring(0, postData.IndexOf('=')), WebUtility.UrlDecode(postData.Substring(postData.IndexOf('=') + 1)));
+                    }
+                }
                 // Generate response
                 byte[] responseContent;
                 response.RequestInformation = requestInfo;
