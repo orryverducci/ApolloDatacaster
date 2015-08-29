@@ -24,6 +24,11 @@ namespace WebServer
         public string[] Path { get; set; }
 
         /// <summary>
+        /// The content type of the sent data, expressed as an Internet media type
+        /// </summary>
+        public string ContentType { get; set; }
+
+        /// <summary>
         /// Dictionary of queries requested as GET queries in the URL
         /// </summary>
         public Dictionary<string, string> GetQueries { get; set; }

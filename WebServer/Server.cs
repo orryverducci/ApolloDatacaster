@@ -198,6 +198,7 @@ namespace WebServer
                 requestInfo.SourceIP = listenerContext.Request.RemoteEndPoint.Address;
                 requestInfo.Domain = listenerContext.Request.Url.Host;
                 requestInfo.Path = listenerContext.Request.Url.AbsolutePath.Substring(1).Split('/');
+                requestInfo.ContentType = listenerContext.Request.ContentType;
                 requestInfo.GetQueries = new Dictionary<string, string>();
                 for (int i = 0; i < listenerContext.Request.QueryString.Count; i++)
                 {
@@ -205,7 +206,7 @@ namespace WebServer
                     requestInfo.GetQueries.Add(key, WebUtility.UrlDecode(string.Join(string.Empty, listenerContext.Request.QueryString.GetValues(key))));
                 }
                 requestInfo.PostData = new Dictionary<string, string>();
-                if (listenerContext.Request.HttpMethod == "POST" && listenerContext.Request.ContentType == "application/x-www-form-urlencoded")
+                if (listenerContext.Request.HttpMethod == "POST" && requestInfo.ContentType == "application/x-www-form-urlencoded")
                 {
                     StreamReader postStream = new StreamReader(listenerContext.Request.InputStream);
                     string postString = postStream.ReadToEnd();
