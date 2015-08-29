@@ -201,6 +201,12 @@ namespace WebServer
                 requestInfo.Path = listenerContext.Request.Url.AbsolutePath.Substring(1).Split('/');
                 requestInfo.Method = listenerContext.Request.HttpMethod;
                 requestInfo.ContentType = listenerContext.Request.ContentType;
+                requestInfo.Headers = new Dictionary<string, string>();
+                for (int i = 0; i < listenerContext.Request.Headers.Count; i++)
+                {
+                    string key = listenerContext.Request.Headers.GetKey(i);
+                    requestInfo.Headers.Add(key, listenerContext.Request.Headers[key]);
+                }
                 requestInfo.SentData = listenerContext.Request.InputStream;
                 requestInfo.GetQueries = new Dictionary<string, string>();
                 for (int i = 0; i < listenerContext.Request.QueryString.Count; i++)

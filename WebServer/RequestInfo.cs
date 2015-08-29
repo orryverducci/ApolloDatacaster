@@ -35,6 +35,11 @@ namespace WebServer
         public string ContentType { get; set; }
 
         /// <summary>
+        /// Dictionary of the headers sent with the request
+        /// </summary>
+        public Dictionary<string, string> Headers { get; set; }
+
+        /// <summary>
         /// The data sent with the request
         /// </summary>
         public Stream SentData { get; set; }
